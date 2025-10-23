@@ -1,0 +1,314 @@
+/* src/styles/index.css */
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom page background - multiple approaches */
+html, body {
+  background-color: rgb(242, 239, 230) !important;
+  min-height: 100vh;
+}
+
+#root {
+  background-color: rgb(242, 239, 230);
+  min-height: 100vh;
+}
+
+/* Custom styles */
+.prose {
+  max-width: none;
+}
+
+.prose h1 {
+  @apply text-3xl font-bold text-gray-900 mb-6;
+}
+
+.prose h2 {
+  @apply text-2xl font-semibold text-gray-800 mb-4;
+}
+
+.prose h3 {
+  @apply text-xl font-medium text-gray-800 mb-3;
+}
+
+.prose p {
+  @apply text-gray-600 mb-4 leading-relaxed;
+}
+
+.prose ul {
+  @apply mb-4;
+}
+
+.prose li {
+  @apply mb-2;
+}
+
+
+
+
+/* ===== SCROLL ANIMATIONS ===== */
+
+/* Base states - hidden initially */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.fade-in-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.fade-in-right {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.fade-in-scale {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Visible states - animate in */
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-in-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.fade-in-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.fade-in-scale.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Stagger children animation */
+.stagger-children {
+  opacity: 1;
+}
+
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.stagger-children.visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Add stagger delays */
+.stagger-children.visible > *:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.stagger-children.visible > *:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.stagger-children.visible > *:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+.stagger-children.visible > *:nth-child(4) {
+  transition-delay: 0.4s;
+}
+
+.stagger-children.visible > *:nth-child(5) {
+  transition-delay: 0.5s;
+}
+
+.stagger-children.visible > *:nth-child(6) {
+  transition-delay: 0.6s;
+}
+
+/* Hero text animation */
+.hero-text {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: heroSlideUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s forwards;
+}
+
+.hero-subtitle {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: heroSlideUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s forwards;
+}
+
+.hero-description {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroSlideUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.9s forwards;
+}
+
+.hero-button {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroSlideUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.2s forwards;
+}
+
+@keyframes heroSlideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hero image animation - automatic on page load */
+.hero-image {
+  opacity: 0;
+  transform: translateX(50px) scale(0.95);
+  animation: heroImageSlide 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.8s forwards;
+}
+
+@keyframes heroImageSlide {
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* Trapezoid individual animations - automatic with delays */
+.trapezoid {
+  opacity: 0;
+  transform: scale(0.95);
+  animation: trapezoidAppear 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.trapezoid:nth-child(2) {
+  animation-delay: 1s;
+}
+
+.trapezoid:nth-child(3) {
+  animation-delay: 1.2s;
+}
+
+.trapezoid:nth-child(4) {
+  animation-delay: 1.4s;
+}
+
+@keyframes trapezoidAppear {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Portfolio grid animation */
+.portfolio-grid {
+  opacity: 0;
+  transform: rotate(12deg) scale(0.9);
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.portfolio-grid.visible {
+  opacity: 1;
+  transform: rotate(12deg) scale(1);
+}
+
+.portfolio-grid > div {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.portfolio-grid.visible > div {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.portfolio-grid.visible > div:nth-child(1) { transition-delay: 0.1s; }
+.portfolio-grid.visible > div:nth-child(2) { transition-delay: 0.2s; }
+.portfolio-grid.visible > div:nth-child(3) { transition-delay: 0.3s; }
+.portfolio-grid.visible > div:nth-child(4) { transition-delay: 0.4s; }
+.portfolio-grid.visible > div:nth-child(5) { transition-delay: 0.5s; }
+.portfolio-grid.visible > div:nth-child(6) { transition-delay: 0.6s; }
+.portfolio-grid.visible > div:nth-child(7) { transition-delay: 0.7s; }
+.portfolio-grid.visible > div:nth-child(8) { transition-delay: 0.8s; }
+.portfolio-grid.visible > div:nth-child(9) { transition-delay: 0.9s; }
+
+/* Stats counter animation */
+.stat-number {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.stat-number.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Service card enhanced animations */
+.service-card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.service-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Performance optimization */
+.fade-in-up,
+.fade-in-left,
+.fade-in-right,
+.fade-in-scale,
+.stagger-children > *,
+.hero-text,
+.hero-subtitle,
+.hero-description,
+.hero-button,
+.hero-image,
+.trapezoid,
+.portfolio-grid,
+.stat-number,
+.service-card {
+  will-change: transform, opacity;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .fade-in-up,
+  .fade-in-left,
+  .fade-in-right,
+  .fade-in-scale,
+  .stagger-children > *,
+  .hero-text,
+  .hero-subtitle,
+  .hero-description,
+  .hero-button,
+  .hero-image,
+  .trapezoid,
+  .portfolio-grid,
+  .stat-number,
+  .service-card {
+    transition: none;
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
