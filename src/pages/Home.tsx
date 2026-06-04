@@ -178,6 +178,174 @@ const Home: React.FC = () => {
         </div>
       </section>
 
+      {/* JSR Insights Section */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            {/* Section Header */}
+            <div className="text-center mb-16">
+              <p className="fade-in-up text-sm font-bold tracking-widest uppercase mb-3" style={{ color: '#DE6449' }}>
+                Market Intelligence
+              </p>
+              <h2 className="fade-in-up text-4xl md:text-5xl font-bold mb-6 font-heading" style={{ color: '#13293D' }}>
+                JSR Insights
+              </h2>
+              <div className="w-16 h-1 mx-auto mb-6" style={{ backgroundColor: '#DE6449' }}></div>
+              <p className="fade-in-up text-xl max-w-2xl mx-auto font-body" style={{ color: '#555' }}>
+                Expert perspectives, market reports, and strategy articles from the JSR Capital team.
+              </p>
+            </div>
+
+            {/* Dynamic Insights Grid */}
+            {/* 
+              TIPS FOR ADDING CONTENT:
+              To add your PDFs or Links, update the 'insightsData' array below.
+              For PDFs: Put your PDF files inside the '/public/documents/' folder and link them like '/documents/your-file.pdf'.
+              For Links: Use any external URL like 'https://example.com'.
+            */}
+            {(() => {
+              const insightsData: Array<{
+                title: string;
+                description: string;
+                date: string;
+                publisher: string;
+                pdfUrl: string;
+                webUrl: string;
+                expert: string;
+              }> = [
+                {
+                  title: "IPO Issuers Opt to Wait Rather Than Resize Offerings",
+                  description: "Our Partner Sahil comments on the strategy of Indian IPO issuers preferring to delay market launches instead of resizing their capital mandates amidst dynamic market shifts.",
+                  date: "June 03, 2026",
+                  publisher: "The Hindu BusinessLine",
+                  pdfUrl: "/documents/the_hindu_businessline_june_3rd.pdf",
+                  webUrl: "https://www.thehindubusinessline.com/markets/stock-markets/ipo-issuers-opt-to-wait-rather-than-resize-offerings/article71053760.ece?shem=rimspwouoe",
+                  expert: "Sahil"
+                },
+                {
+                  title: "Arbitrage Hunters Eye SME Stocks for Migration Windfalls as Mainboard Stagnates",
+                  description: "Our Founder & Partner, Sanket Jamuar, was quoted in Mint on the valuation opportunities arising from SME-to-mainboard migration, highlighting that the liquidity and institutional access discount attached to SME-listed companies often narrows significantly after migration.",
+                  date: "May 25, 2026",
+                  publisher: "Livemint (Mint)",
+                  pdfUrl: "/documents/google.pdf",
+                  webUrl: "https://www.livemint.com/market/arbitrage-hunters-eye-sme-stocks-for-migration-windfalls-as-mainboards-stagnate-nse-bse-markets-11779599538334.html?shem=rimspwouoe",
+                  expert: "Sanket"
+                }
+              ];
+
+              if (insightsData.length === 0) {
+                return (
+                  <div
+                    className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed py-20 px-8 text-center"
+                    style={{ borderColor: '#D8D3C8', backgroundColor: '#F9F7F2' }}
+                  >
+                    <div
+                      className="w-16 h-16 rounded-full flex items-center justify-center mb-5"
+                      style={{ backgroundColor: '#F1EFE6' }}
+                    >
+                      <svg className="w-8 h-8" style={{ color: '#DE6449' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l6 6v8a2 2 0 01-2 2z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 2v6h6M9 12h6M9 16h4" />
+                      </svg>
+                    </div>
+                    <h3 className="text-xl font-semibold mb-2 font-heading" style={{ color: '#13293D' }}>
+                      Insights Coming Soon
+                    </h3>
+                    <p className="font-body" style={{ color: '#888', maxWidth: '360px' }}>
+                      We are preparing reports and market analysis. Please check back shortly.
+                    </p>
+                  </div>
+                );
+              }
+
+              return (
+                <div className="border rounded-3xl p-6 md:p-8 max-w-4xl mx-auto shadow-sm" style={{ borderColor: '#D8D3C8', backgroundColor: '#F9F7F2' }}>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {insightsData.map((item, index) => (
+                      <div key={index} className="relative bg-white p-8 rounded-2xl shadow-lg border border-gray-200 flex flex-col justify-between hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                        <div>
+                        {/* Meta Category & Date */}
+                        <div className="flex items-center justify-between mb-4">
+                          <span 
+                            className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
+                            style={{ 
+                              backgroundColor: 'rgba(222, 100, 73, 0.1)', 
+                              color: '#DE6449' 
+                            }}
+                          >
+                            {item.publisher}
+                          </span>
+                          <span className="text-sm text-gray-500">{item.date}</span>
+                        </div>
+                        
+                        {/* Title */}
+                        <h3 className="text-xl font-semibold mb-3 font-heading text-[#13293D] leading-snug">
+                          {item.title}
+                        </h3>
+                        
+                        {/* Quoted Expert Badge */}
+                        <div className="inline-flex items-center gap-1.5 mb-5 px-2.5 py-1 rounded bg-gray-100 text-xs font-semibold text-gray-700">
+                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                          </svg>
+                          Featured Expert: {item.expert}
+                        </div>
+
+                        {/* Description */}
+                        <p className="text-gray-600 font-body text-sm mb-8 leading-relaxed">
+                          {item.description}
+                        </p>
+                      </div>
+
+                      {/* Action Links (Dual Options) */}
+                      <div className="flex flex-col sm:flex-row gap-4 border-t border-gray-100 pt-6">
+                        <a 
+                          href={item.webUrl} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="flex-1 inline-flex items-center justify-center px-4 py-2.5 rounded-lg border text-sm font-semibold transition-all duration-200"
+                          style={{ borderColor: '#265CC7', color: '#265CC7' }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.backgroundColor = '#265CC7';
+                            e.currentTarget.style.color = '#ffffff';
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.backgroundColor = 'transparent';
+                            e.currentTarget.style.color = '#265CC7';
+                          }}
+                        >
+                          <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                          Read Online
+                        </a>
+
+                        <a 
+                          href={item.pdfUrl} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="flex-1 inline-flex items-center justify-center px-4 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200"
+                          style={{ backgroundColor: '#DE6449', color: '#ffffff' }}
+                          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#c4533a'}
+                          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#DE6449'}
+                        >
+                          <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                          </svg>
+                          Download PDF
+                        </a>
+                      </div>
+                    </div>
+                  ))}
+                  </div>
+                </div>
+              );
+            })()}
+
+          </div>
+        </div>
+      </section>
+
       {/* Our Services Section */}
       <section className="py-24" style={{ backgroundColor: '#F1EFE6' }}>
         <div className="container mx-auto px-4">
